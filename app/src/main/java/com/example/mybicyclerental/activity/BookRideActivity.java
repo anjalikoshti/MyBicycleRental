@@ -211,9 +211,6 @@ public class BookRideActivity extends AppCompatActivity {
             intent.putExtra("bookingModel",bookingModel);
             startActivity(intent);
 
-
-
-
 //            FirebaseFirestore.getInstance().collection("BOOKINGS").add(bookingModel)
 //                    .addOnCompleteListener(task1 -> {
 //                        if (task1.isSuccessful()) {
