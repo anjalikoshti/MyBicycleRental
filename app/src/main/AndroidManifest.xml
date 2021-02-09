@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.mybicyclerental">
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyBicycleRental.Light">
+
+        <activity android:name=".activity.UpcomingActivity"></activity>
+        <activity android:name=".activity.HistoryActivity" />
+        <activity android:name=".activity.CurrentRideActivity" />
+        <activity android:name=".activity.BicycleDetailActivity" />
+        <activity android:name=".activity.SelectHourDaysActivity" />
+        <activity android:name=".activity.PaymentDetailActivity" />
+        <activity android:name=".activity.ChooseBicycleActivity" />
+        <activity android:name=".activity.BookRideActivity" />
+        <activity android:name=".activity.BottomNavActivity" />
+        <activity android:name=".activity.ForgatActivity" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.GetStartedActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

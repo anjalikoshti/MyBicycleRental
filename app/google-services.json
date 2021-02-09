@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "261968093799",
+    "project_id": "my-bicycle-rental",
+    "storage_bucket": "my-bicycle-rental.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261968093799:android:e62a5b3b1b48ed88c16ac2",
+        "android_client_info": {
+          "package_name": "com.example.mybicyclerental"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261968093799-o5v131mtpd7p5egp0js4lu1no67udl3e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mybicyclerental",
+            "certificate_hash": "1414a25620d31859dd853c124ae59e4f803b652d"
+          }
+        },
+        {
+          "client_id": "261968093799-16ce5f9b528091odkep9dcvcvjoclapb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcY7Cu0vE3oEKPvVEqCtyu-_jZO9NCWgs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261968093799-16ce5f9b528091odkep9dcvcvjoclapb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

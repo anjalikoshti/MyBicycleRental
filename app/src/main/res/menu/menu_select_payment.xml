@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/chipdebit"
+        android:title="Debit Card/Credit Card"/>
+    <item
+        android:id="@+id/chipgooglepay"
+        android:title="Google Pay"/>
+
+    <item
+        android:id="@+id/chipupi"
+        android:title="UPI"/>
+
+</menu>

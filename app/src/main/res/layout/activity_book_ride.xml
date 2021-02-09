@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.BookRideActivity">
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="400dp"
+        android:layout_height="38dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="11dp"
+        tools:ignore="MissingConstraints">
+
+        <RadioButton
+            android:id="@+id/radio_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="Hour"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioButton
+            android:id="@+id/radio_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="Days" />
+
+    </RadioGroup>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:id="@+id/ed_select_hour"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+
+        app:layout_constraintTop_toBottomOf="@+id/radio_group">
+
+        <AutoCompleteTextView
+            android:id="@+id/hour_dropdown"
+            android:hint="Select Hour"
+            android:textSize="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:id="@+id/ed_select_days"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/ed_select_hour">
+
+        <AutoCompleteTextView
+            android:id="@+id/day_dropdown"
+            android:hint="Select Days"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <TextView
+        android:id="@+id/tv_dd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bicycle Name"
+        android:visibility="gone"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/ed_select_days"/>
+
+    <ImageView
+        android:id="@+id/bimage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ed_select_days" />
+
+   <EditText
+       android:id="@+id/ed_date"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:layout_constraintTop_toBottomOf="@+id/bimage"/>
+
+    <Button
+        android:id="@+id/btn_date"
+        android:text="Enter Date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        app:layout_constraintTop_toBottomOf="@+id/ed_date"
+        />
+
+
+    <Button
+        android:id="@+id/btn_choose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose Bicycle"
+        app:layout_constraintTop_toBottomOf="@+id/btn_date"
+        android:layout_margin="25dp"/>
+
+
+    <Button
+        android:id="@+id/btn_booknow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Book Now"
+        app:layout_constraintTop_toBottomOf="@+id/btn_choose"
+        android:layout_margin="25dp"/>
+    <Button
+        android:id="@+id/btn_payment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Payment"
+        app:layout_constraintTop_toBottomOf="@+id/btn_booknow"
+        android:layout_margin="25dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
