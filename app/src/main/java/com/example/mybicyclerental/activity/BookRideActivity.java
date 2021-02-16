@@ -39,7 +39,7 @@ public class BookRideActivity extends AppCompatActivity {
     private int PICK_IMAGE_CAMERA;
     ActivityBookRideBinding viewBinding;
     SharedPreferences preferences;
-    Button btnenterdate,btnchoosebicycle,btnscan, btnbooknow,btnpayment;
+    Button btnenterdate,btnchoosebicycle,btnscan, btnbooknow;
     BicycleModel bicycleModel;
     RadioButton hour, days;
     RadioGroup radioGroup;
@@ -55,8 +55,8 @@ public class BookRideActivity extends AppCompatActivity {
     RadioButton checkedRadioButton;
     TextInputLayout textInputLayoutdays, textInputLayouthours;
     AutoCompleteTextView autoCompleteTextViewDay, autoCompleteTextViewHour;
-    String[] Hour = {"1 Hour", "2 Hour", "3 Hour", "4 Hour", "5 Hour"};
-    String[] Days = {"1 Day", "2 Day", "3 Day", "4 Day", "5 Day"};
+    String[] Hour = {"1 Hour", "2 Hour", "3 Hour", "4 Hour", "5 Hour","6 Hour","7 Hour","8 Hour","9 Hour","10 Hour"};
+    String[] Days = {"1 Day", "2 Day", "3 Day", "4 Day", "5 Day", "6 Day", "7 Day", "8 Day", "9 Day", "10 Day"};
     BookingModel bookingModel;
 
 
@@ -69,7 +69,6 @@ public class BookRideActivity extends AppCompatActivity {
         edtDate =findViewById(R.id.ed_date);
         btnenterdate=findViewById(R.id.btn_date);
         btnscan=findViewById(R.id.btn_scan);
-        btnpayment=findViewById(R.id.btn_payment);
         btnchoosebicycle = findViewById(R.id.btn_choose);
         btnbooknow = findViewById(R.id.btn_booknow);
         hour = findViewById(R.id.radio_hour);
@@ -141,14 +140,18 @@ public class BookRideActivity extends AppCompatActivity {
                 date=new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
                 bookingModel.setDate(edtDate.getText().toString());
                 if (checkedId==R.id.radio_days){
-
+                    bookingModel.setPrice("50");
                     bookingModel.setDays(viewBinding.dayDropdown.getText().toString().trim());
                     bookingModel.setHour("");
+                    CharSequence days=viewBinding.dayDropdown.getText().toString().subSequence(0,1);
+                    bookingModel.setTotal(String.valueOf(Integer.parseInt(String.valueOf(days))*Integer.parseInt(bookingModel.getPrice())));
                 }
                 if (checkedId==R.id.radio_hour){
-
+                    bookingModel.setPrice("5");
                     bookingModel.setDays("");
                     bookingModel.setHour(viewBinding.hourDropdown.getText().toString().trim());
+                    CharSequence hour=viewBinding.hourDropdown.getText().toString().subSequence(0,1);
+                    bookingModel.setTotal(String.valueOf(Integer.parseInt(String.valueOf(hour))*Integer.parseInt(bookingModel.getPrice())));
                 }
                 validateAndBook(bookingModel);
             }
@@ -165,6 +168,7 @@ public class BookRideActivity extends AppCompatActivity {
 
                 BookRideActivity.this.checkedId=checkedId;
                 if (checkedId == R.id.radio_hour) {
+
                     textInputLayouthours.setVisibility(View.VISIBLE);
                     textInputLayoutdays.setVisibility(View.GONE);
 
@@ -207,7 +211,8 @@ public class BookRideActivity extends AppCompatActivity {
                 autoCompleteTextViewHour.setError("enter hour");
             }
         }else  {
-            Intent intent = new Intent(BookRideActivity.this,PaymentDetailActivity.class);
+
+            Intent intent = new Intent(BookRideActivity.this,BookingDetailActivity.class);
             intent.putExtra("bookingModel",bookingModel);
             startActivity(intent);
 

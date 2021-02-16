@@ -12,11 +12,12 @@
         android:theme="@style/Theme.MyBicycleRental.Light">
 
         <activity android:name=".activity.UpcomingActivity"></activity>
+        <activity android:name=".activity.PaymentActivity"></activity>
         <activity android:name=".activity.HistoryActivity" />
         <activity android:name=".activity.CurrentRideActivity" />
         <activity android:name=".activity.BicycleDetailActivity" />
         <activity android:name=".activity.SelectHourDaysActivity" />
-        <activity android:name=".activity.PaymentDetailActivity" />
+        <activity android:name=".activity.BookingDetailActivity" />
         <activity android:name=".activity.ChooseBicycleActivity" />
         <activity android:name=".activity.BookRideActivity" />
         <activity android:name=".activity.BottomNavActivity" />

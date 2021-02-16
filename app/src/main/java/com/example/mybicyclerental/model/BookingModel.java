@@ -8,6 +8,17 @@ public class BookingModel implements Serializable {
     private String days;
     private String date;
     private String time;
+    private String price;
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+    private String total;
 
     public BookingModel() {
     }
@@ -61,5 +72,15 @@ public class BookingModel implements Serializable {
     public void setBicycleModel(BicycleModel bicycleModel) {
         this.bicycleModel = bicycleModel;
     }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
 }
+
 

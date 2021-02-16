@@ -12,17 +12,15 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.mybicyclerental.R;
-import com.example.mybicyclerental.activity.PaymentDetailActivity;
+import com.example.mybicyclerental.activity.BookingDetailActivity;
 
 public class PaymentFragment extends Fragment {
 
-    CardView payment;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_payment,container,false);
-        payment=view.findViewById(R.id.cv_Payment);
 
         return view;
     }
