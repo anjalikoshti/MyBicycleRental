@@ -13,18 +13,6 @@ import com.example.mybicyclerental.R;
 import java.security.CodeSource;
 
 public class ScannerActivity extends AppCompatActivity {
-    TextView barcodeinfo;
-    SurfaceView surfaceView;
-    CameraDevice cameraDevice;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scanner);
-        surfaceView=(SurfaceView)findViewById(R.id.camera_view);
-        barcodeinfo=(TextView)findViewById(R.id.txtContent);
 
 
-
-    }
 }

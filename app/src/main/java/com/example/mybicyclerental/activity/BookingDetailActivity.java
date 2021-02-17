@@ -62,6 +62,7 @@ public class BookingDetailActivity extends AppCompatActivity {
                 }
             });
                Intent intent=new Intent(BookingDetailActivity.this,PaymentActivity.class);
+               intent.putExtra("amount",bookingModel.getTotal());
                startActivity(intent);
            }
 

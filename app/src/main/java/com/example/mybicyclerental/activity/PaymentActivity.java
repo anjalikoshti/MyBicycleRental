@@ -1,12 +1,17 @@
 package com.example.mybicyclerental.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mybicyclerental.R;
 import com.payumoney.core.PayUmoneySdkInitializer;
+import com.payumoney.core.entity.Amount;
+import com.payumoney.core.entity.TransactionResponse;
 import com.payumoney.sdkui.ui.utils.PayUmoneyFlowManager;
 
 import java.security.MessageDigest;
@@ -15,11 +20,9 @@ import java.security.NoSuchAlgorithmException;
 import static android.os.Build.ID;
 
 public class PaymentActivity extends AppCompatActivity {
-
-    PayUmoneySdkInitializer.PaymentParam paymentParam = null;
-    String key = "w8SWs12U";
-    Integer txnid = 1;
-    Integer amount = 100;
+    String key = "h2zHZYnQ";
+    String txnid = "1";
+    String amount = "";
     String productinfo = "bicycle";
     String firstname = "Anjali";
     String email = "koshtianjali502@gmail.com";
@@ -28,19 +31,27 @@ public class PaymentActivity extends AppCompatActivity {
     String udf3 = "";
     String udf4 = "";
     String udf5 = "";
+    String udf6 = "";
+    String udf7 = "";
+    String udf8 = "";
+    String udf9 = "";
+    String udf10 = "";
     String salt = "1zFQ1i14Z3";
+    String merchantId="7380111";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String hashSequence = key+"|"+txnid+"|"+amount+"|"+productinfo+"|"+firstname+"|"+email+"|"+udf1+"|"+udf2+"|"+udf3+"|"+udf4+"|"+udf5+"|||||"+salt;
+        amount= getIntent().getStringExtra("amount");
+        String hashSequence = key+"|"+txnid+"|"+amount+"|"+productinfo+"|"+firstname+"|"+email+"|"+udf1+"|"+udf2+"|"+udf3+"|"+udf4+"|"+udf5+"||||||"+salt;
         PayUmoneySdkInitializer.PaymentParam.Builder builder = new
                 PayUmoneySdkInitializer.PaymentParam.Builder();
-        builder.setAmount(String.valueOf(amount))                          // Payment amount
-                .setTxnId(String.valueOf(1))         // Transaction ID//
+
+        builder.setAmount(amount)                          // Payment amount
+                .setTxnId(txnid)         // Transaction ID//
                 .setPhone("9624952126")                     // User Phone number
-                .setProductName("bicycle")                   // Product Name or description
-                .setFirstName("Anjali")                              // User First name
+                .setProductName(productinfo)                   // Product Name or description
+                .setFirstName(firstname)                              // User First name
                 .setEmail(email)                                            // User Email ID
                 .setsUrl("https://www.payumoney.com/mobileapp/payumoney/success.php")                    // Success URL (surl)
                 .setfUrl("https://www.payumoney.com/mobileapp/payumoney/failure.php")                     //Failure URL (furl)
@@ -49,16 +60,19 @@ public class PaymentActivity extends AppCompatActivity {
                 .setUdf3(udf3)
                 .setUdf4(udf4)
                 .setUdf5(udf5)
-                .setUdf6("")
-                .setUdf7("")
-                .setUdf8("")
-                .setUdf9("")
-                .setUdf10("")
-                .setIsDebug(true)                             // Integration environment - true (Debug)/ false(Production)
-                .setKey( key)                        // Merchant key
-                .setMerchantId("6764071");             // Merchant ID
+                .setUdf6(udf6)
+                .setUdf7(udf7)
+                .setUdf8(udf8)
+                .setUdf9(udf9)
+                .setUdf10(udf10)
+                .setIsDebug(false)                             // Integration environment - true (Debug)/ false(Production)
+                .setKey(key)                        // Merchant key
+                .setMerchantId(merchantId);             // Merchant ID
 
-        //declare paymentParam object;
+
+
+        //declare paymentParam object
+        PayUmoneySdkInitializer.PaymentParam paymentParam = null;
         try {
             paymentParam = builder.build();
         } catch (Exception e) {
@@ -71,7 +85,7 @@ public class PaymentActivity extends AppCompatActivity {
         PayUmoneyFlowManager.startPayUMoneyFlow(
                 paymentParam,
                 this,
-               -1,
+                R.style.AppTheme_default,
         true);
     }
 
@@ -91,7 +105,37 @@ public class PaymentActivity extends AppCompatActivity {
         }
         return hash.toString();
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result Code is -1 send from Payumoney activity
+        Log.d("MainActivity", "request code " + requestCode + " resultcode " + resultCode);
+        if (requestCode == PayUmoneyFlowManager.REQUEST_CODE_PAYMENT && resultCode == RESULT_OK && data != null) {
+            TransactionResponse transactionResponse = data.getParcelableExtra(PayUmoneyFlowManager.INTENT_EXTRA_TRANSACTION_RESPONSE);
+
+            if (transactionResponse != null && transactionResponse.getPayuResponse() != null) {
+
+                if (transactionResponse.getTransactionStatus().equals(TransactionResponse.TransactionStatus.SUCCESSFUL)) {
+                    Toast.makeText(PaymentActivity.this,"Successfull",Toast.LENGTH_SHORT).show();
+                    //Success Transaction
+                } else {
+                    //Failure Transaction
+                }
+
+                // Response from Payumoney
+                String payuResponse = transactionResponse.getPayuResponse();
+
+                // Response from SURl and FURL
+                String merchantResponse = transactionResponse.getTransactionDetails();
+            } else {
+                Log.d("payment", "Both objects are null!");
+            }
+        }
+
+    }
 
 
-}
+
+    }
 
