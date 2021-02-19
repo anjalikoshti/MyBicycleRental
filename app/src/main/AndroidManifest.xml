@@ -16,7 +16,6 @@
         <activity android:name=".activity.UpcomingActivity"></activity>
         <activity android:name=".activity.PaymentActivity"></activity>
         <activity android:name=".activity.HistoryActivity" />
-        <activity android:name=".activity.ScannerActivity"/>
         <activity android:name=".activity.CurrentRideActivity" />
         <activity android:name=".activity.BicycleDetailActivity" />
         <activity android:name=".activity.SelectHourDaysActivity" />

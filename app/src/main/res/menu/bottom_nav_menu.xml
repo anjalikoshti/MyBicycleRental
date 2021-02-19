@@ -11,11 +11,7 @@
         android:id="@+id/book"
         android:title="Booking"
         />
-    <item
-        android:icon="@drawable/ic_baseline_payment_24"
-        android:id="@+id/pay"
-        android:title="Payment"
-        />
+
     <item
         android:icon="@drawable/ic_baseline_person_24"
         android:id="@+id/prof"
