@@ -36,10 +36,12 @@ public class UpcomingAdapter extends RecyclerView.Adapter<UpcomingAdapter.Upcomi
      @Override
      public void onBindViewHolder(@NonNull UpcomingViewHolder holder, int position) {
          holder.tvname.setText(list.get(position).getBicycleModel().getBicycleName());
+         holder.thour.setText(list.get(position).getHour());
+         holder.tdays.setText(list.get(position).getDays());
+         holder.tdate.setText(list.get(position).getDate());
+         holder.tvamount.setText(list.get(position).getTotal());
          Glide.with(context).load(list.get(position).getBicycleModel().getBicycleImage()).into(holder.imageView);
-         holder.btnchoose.setOnClickListener(view -> {
-             listener.getSelectedBicycle(list.get(position).getBicycleModel());
-         });
+
      }
 
 
@@ -49,15 +51,17 @@ public class UpcomingAdapter extends RecyclerView.Adapter<UpcomingAdapter.Upcomi
     }
 
     public class UpcomingViewHolder extends RecyclerView.ViewHolder{
-         TextView tvname;
-         Button btnchoose;
+         TextView tvname,thour,tdate,tdays,tvamount;
          ImageView imageView;
 
         public UpcomingViewHolder(@NonNull View Upcoming) {
             super(Upcoming);
 
             tvname=itemView.findViewById(R.id.tv_text1);
-            btnchoose=itemView.findViewById(R.id.btn_choose);
+            thour=itemView.findViewById(R.id.t_UHour);
+            tdate=itemView.findViewById(R.id.t_Udate);
+            tdays=itemView.findViewById(R.id.t_UDays);
+            tvamount=itemView.findViewById(R.id.t_Uamount);
             imageView=itemView.findViewById(R.id.image_item);
         }
 

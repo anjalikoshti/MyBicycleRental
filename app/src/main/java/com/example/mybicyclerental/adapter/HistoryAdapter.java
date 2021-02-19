@@ -40,12 +40,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     @Override
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
         holder.tvname.setText(list.get(position).getBicycleModel().getBicycleName());
+        holder.thour.setText(list.get(position).getHour());
+        holder.tdays.setText(list.get(position).getDays());
+        holder.tdate.setText(list.get(position).getDate());
         Glide.with(context).load(list.get(position).getBicycleModel().getBicycleImage()).into(holder.imageView);
-
-        holder.btnchoose.setOnClickListener(view -> {
-            listener.getSelectedBicycle(list.get(position).getBicycleModel());
-        });
-
     }
 
     @Override
@@ -55,15 +53,16 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     }
 
     public class HistoryViewHolder extends RecyclerView.ViewHolder {
-        TextView tvname;
-        Button btnchoose;
+        TextView tvname,thour,tdate,tdays;
         ImageView imageView;
 
         public HistoryViewHolder(View History) {
             super(History);
 
             tvname = itemView.findViewById(R.id.tv_text1);
-            btnchoose = itemView.findViewById(R.id.btn_choose);
+            thour=itemView.findViewById(R.id.t_UHour);
+            tdate=itemView.findViewById(R.id.t_Udate);
+            tdays=itemView.findViewById(R.id.t_UDays);
             imageView=itemView.findViewById(R.id.image_item);
         }
     }
