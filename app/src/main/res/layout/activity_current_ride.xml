@@ -5,18 +5,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.CurrentRideActivity">
+    <TextView
+        android:id="@+id/current_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="CurrentDetails"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="70dp"
+        android:textColor="#000"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_CN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/current_detail">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_CBN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bicycle Name:-"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_Chh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hour:-"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tv_Cdy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Day:-"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tv_Cdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date:-"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/txt_Tprice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Price:-"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+            <ImageView
+                android:id="@+id/image_CImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
     <Button
-    android:id="@+id/btn_scan"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Scanner Code"
-    app:layout_constraintTop_toTopOf="parent"
-    android:layout_margin="25dp"/>
-     <Button
-     android:id="@+id/btn_unlocked"
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content"
-     android:text="Unlocked"
-     app:layout_constraintTop_toBottomOf="@+id/btn_scan"
-     android:layout_margin="25dp"/>
+        android:id="@+id/btn_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/cv_CN"
+        android:layout_margin="35dp"
+        android:text="Start Ride"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

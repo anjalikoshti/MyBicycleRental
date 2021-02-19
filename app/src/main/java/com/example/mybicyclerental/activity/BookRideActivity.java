@@ -68,7 +68,6 @@ public class BookRideActivity extends AppCompatActivity {
         preferences = getSharedPreferences("user", MODE_PRIVATE);
         edtDate =findViewById(R.id.ed_date);
         btnenterdate=findViewById(R.id.btn_date);
-        btnscan=findViewById(R.id.btn_scan);
         btnchoosebicycle = findViewById(R.id.btn_choose);
         btnbooknow = findViewById(R.id.btn_booknow);
         hour = findViewById(R.id.radio_hour);
@@ -110,13 +109,15 @@ public class BookRideActivity extends AppCompatActivity {
                                 public void onDateSet(DatePicker view, int year,
                                                       int monthOfYear, int dayOfMonth) {
 
-                                    edtDate.setText(String.valueOf(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year));
+
+                                    edtDate.setText(getDateString(year,monthOfYear,dayOfMonth));
 
                                 }
                             }, mYear, mMonth, mDay);
                     datePickerDialog.show();
                 }
         });
+
 
         viewBinding.btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,5 +231,11 @@ public class BookRideActivity extends AppCompatActivity {
 //                }
 //            });
         }
+    }
+    private String getDateString(int year, int mMonth, int mDay) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, mMonth, mDay);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormat.format(calendar.getTime());
     }
 }
