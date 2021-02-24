@@ -134,7 +134,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             val lastLatLng = pathPoints.last().last()
             val polylineOptions = PolylineOptions()
                     .color(getColor(R.color.blue))
-                    .width(5f)
+                    .width(10f)
                     .add(preLastLatLng)
                     .add(lastLatLng)
             map.addPolyline(polylineOptions)

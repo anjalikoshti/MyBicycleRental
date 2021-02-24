@@ -35,6 +35,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,7 +48,7 @@ public class ProfileFragment extends Fragment {
     Button btnlogout,btnUploadPic;
     String email;
     String[] your_pic = {"Your Picture"};
-    ImageView imageView;
+    CircularImageView circularImageView;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     Uri iduri;
@@ -60,7 +61,7 @@ public class ProfileFragment extends Fragment {
         btnUploadPic=view.findViewById(R.id.btn_uploadpic);
         tvusername=view.findViewById(R.id.tvusername);
         tvcn= view.findViewById(R.id.tvcn);
-        imageView=view.findViewById(R.id.pimage);
+        circularImageView=view.findViewById(R.id.pimage);
         tvemail=view.findViewById(R.id.tvemail);
         btnlogout = view.findViewById(R.id.btnlogout);
         preferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
@@ -75,7 +76,7 @@ public class ProfileFragment extends Fragment {
                         tvusername.setText(model.getName());
                         tvcn.setText(model.getContactNumber());
                         tvemail.setText(model.getEmail());
-                        Glide.with(getActivity()).load(model.getProfileUrl()).into(imageView);
+                        Glide.with(getActivity()).load(model.getProfileUrl()).into(circularImageView);
                     }
                 });
         btnlogout.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +129,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-      imageView.setOnClickListener(new View.OnClickListener() {
+      circularImageView.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
               String[] options = {"from Camera", "from Gallery", "cancel"};
@@ -169,7 +170,7 @@ public class ProfileFragment extends Fragment {
                if(resultCode  == resultCode){
                    Uri selectedImage = data.getData();
                    iduri=selectedImage;
-                   imageView.setImageURI(selectedImage);
+                   circularImageView.setImageURI(selectedImage);
                    btnUploadPic.setText("Upload");
 
                }
@@ -178,7 +179,7 @@ public class ProfileFragment extends Fragment {
                 if (resultCode == resultCode){
                     Uri selectedImage = data.getData();
                     iduri=selectedImage;
-                    imageView.setImageURI(selectedImage);
+                    circularImageView.setImageURI(selectedImage);
                     btnUploadPic.setText("Upload");
                 }
                 break;
