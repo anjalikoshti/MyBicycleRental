@@ -82,8 +82,8 @@ public class CurrentRideActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 new IntentIntegrator(CurrentRideActivity.this).initiateScan();
-//                Intent intent  = new Intent(CurrentRideActivity.this,ScannerActivity.class);
-//                startActivity(intent);
+  //            Intent intent  = new Intent(CurrentRideActivity.this,MapActivity.class);
+  //              startActivity(intent);
             }
         });
     }
@@ -96,9 +96,12 @@ public class CurrentRideActivity extends AppCompatActivity {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 String code = result.getContents();
-                if (model.getBicycleModel().getBicycleID().equals(code))
-                    Toast.makeText(CurrentRideActivity.this, "Start Ride", Toast.LENGTH_SHORT).show();
+                if (model.getBicycleModel().getBicycleID().equals(code)) {
+                    Intent intent = new Intent(CurrentRideActivity.this, MapActivity.class);
+                    startActivity(intent);
 
+                    Toast.makeText(CurrentRideActivity.this, "Start Ride", Toast.LENGTH_SHORT).show();
+                }
                 else
                     Toast.makeText(CurrentRideActivity.this, "Invalid code, Retry!", Toast.LENGTH_SHORT).show();
             }}
@@ -106,14 +109,10 @@ public class CurrentRideActivity extends AppCompatActivity {
         else {
             super.onActivityResult(requestCode, resultCode, data);
         }
-//        bookingModel = (BookingModel) getIntent().getSerializableExtra("bookingModel");
-//        tvCBN.setText(bookingModel.getBicycleModel().getBicycleName());
-//        tvCDD.setText(bookingModel.getDate());
-//        tvCDY.setText(bookingModel.getDays());
-//        tvCHH.setText(bookingModel.getHour());
-//        tvTotal.setText(bookingModel.getTotal() + "RS");
-//        Glide.with(CurrentRideActivity.this).load(bookingModel.getBicycleModel().getBicycleImage()).into(icimage);
-//    }
+
     }
+
+
+
 
 }

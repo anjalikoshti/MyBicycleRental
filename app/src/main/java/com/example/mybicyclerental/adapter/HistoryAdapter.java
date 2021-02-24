@@ -33,16 +33,17 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     @NonNull
     @Override
     public HistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View History = LayoutInflater.from(context).inflate(R.layout.custom_item_view, parent, false);
+        View History = LayoutInflater.from(context).inflate(R.layout.upcoming_item_view, parent, false);
         return new HistoryViewHolder(History);
     }
 
     @Override
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
-        holder.tvname.setText(list.get(position).getBicycleModel().getBicycleName());
+        holder.tname.setText(list.get(position).getBicycleModel().getBicycleName());
         holder.thour.setText(list.get(position).getHour());
         holder.tdays.setText(list.get(position).getDays());
         holder.tdate.setText(list.get(position).getDate());
+        holder.tamount.setText(list.get(position).getTotal());
         Glide.with(context).load(list.get(position).getBicycleModel().getBicycleImage()).into(holder.imageView);
     }
 
@@ -53,17 +54,18 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     }
 
     public class HistoryViewHolder extends RecyclerView.ViewHolder {
-        TextView tvname,thour,tdate,tdays;
+        TextView tname,thour,tdate,tdays,tamount;
         ImageView imageView;
 
         public HistoryViewHolder(View History) {
             super(History);
 
-            tvname = itemView.findViewById(R.id.tv_text1);
-            thour=itemView.findViewById(R.id.t_UHour);
-            tdate=itemView.findViewById(R.id.t_Udate);
-            tdays=itemView.findViewById(R.id.t_UDays);
-            imageView=itemView.findViewById(R.id.image_item);
+            tname = itemView.findViewById(R.id.tv_Uname);
+            thour=itemView.findViewById(R.id.tv_Uhour);
+            tdate=itemView.findViewById(R.id.tv_Udate);
+            tdays=itemView.findViewById(R.id.tv_Udays);
+            tamount=itemView.findViewById(R.id.tv_Uamount);
+            imageView=itemView.findViewById(R.id.u_image);
         }
     }
 }

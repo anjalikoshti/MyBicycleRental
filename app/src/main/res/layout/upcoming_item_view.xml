@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/u_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tv_Uname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/u_image"
+        android:text="Bicycle Name"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/tv_Udate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/u_image"
+        android:text="Date"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Uname"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:id="@+id/tv_Uhour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/u_image"
+        android:text="Hour"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Udate"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/tv_Udays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/u_image"
+        android:text="Days"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Uhour"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/tv_Uamount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/u_image"
+        android:text="Amount of Paid:-"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Udays"
+        android:textSize="20sp"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

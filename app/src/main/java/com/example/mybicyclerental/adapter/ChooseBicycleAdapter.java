@@ -44,7 +44,6 @@ public class ChooseBicycleAdapter extends RecyclerView.Adapter<ChooseBicycleAdap
 
         holder.tvname.setText(list.get(position).getBicycleName());
         Glide.with(context).load(list.get(position).getBicycleImage()).into(holder.imageView);
-
         holder.btnChoose.setOnClickListener(view -> {
             listener.getSelectedBicycle(list.get(position));
         });

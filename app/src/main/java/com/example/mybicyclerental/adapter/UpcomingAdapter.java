@@ -29,7 +29,7 @@ public class UpcomingAdapter extends RecyclerView.Adapter<UpcomingAdapter.Upcomi
      @NonNull
      @Override
     public UpcomingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-         View Upcoming= LayoutInflater.from(context).inflate(R.layout.custom_item_view,parent,false);
+         View Upcoming= LayoutInflater.from(context).inflate(R.layout.upcoming_item_view,parent,false);
         return new UpcomingViewHolder(Upcoming);
     }
 
@@ -57,12 +57,12 @@ public class UpcomingAdapter extends RecyclerView.Adapter<UpcomingAdapter.Upcomi
         public UpcomingViewHolder(@NonNull View Upcoming) {
             super(Upcoming);
 
-            tvname=itemView.findViewById(R.id.tv_text1);
-            thour=itemView.findViewById(R.id.t_UHour);
-            tdate=itemView.findViewById(R.id.t_Udate);
-            tdays=itemView.findViewById(R.id.t_UDays);
-            tvamount=itemView.findViewById(R.id.t_Uamount);
-            imageView=itemView.findViewById(R.id.image_item);
+            tvname=itemView.findViewById(R.id.tv_Uname);
+            thour=itemView.findViewById(R.id.tv_Uhour);
+            tdate=itemView.findViewById(R.id.tv_Udate);
+            tdays=itemView.findViewById(R.id.tv_Udays);
+            tvamount=itemView.findViewById(R.id.tv_Uamount);
+            imageView=itemView.findViewById(R.id.u_image);
         }
 
     }
