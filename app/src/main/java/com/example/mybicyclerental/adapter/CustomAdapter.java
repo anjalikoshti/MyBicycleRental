@@ -51,8 +51,6 @@ public class CustomAdapter extends BaseAdapter {
         view= LayoutInflater.from(context).inflate(R.layout.custom_item_view,viewGroup,false);
         ImageView imageView=view.findViewById(R.id.image);
         TextView tvName=view.findViewById(R.id.tv_text1);
-
-
         imageView.setImageResource(image[i]);
         tvName.setText(name[i]);
 

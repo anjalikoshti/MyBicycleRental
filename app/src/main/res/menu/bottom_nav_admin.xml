@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:shownIn="Navigation_View"
+    >
+
+<group android:checkableBehavior="single">
+    <item
+        android:icon="@drawable/ic_baseline_bike_scooter_24"
+        android:id="@+id/activeride"
+        android:title="Ride"
+        />
+    <item
+        android:icon="@drawable/ic_baseline_wysiwyg_24"
+        android:id="@+id/bookadmin"
+        android:title="Booking"
+        />
+
+    <item
+        android:icon="@drawable/ic_baseline_payment_24"
+        android:id="@+id/pay"
+        android:title="Payment"
+        />
+</group>
+
+
+
+</menu>

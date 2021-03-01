@@ -21,7 +21,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChooseBicycleActivity<android> extends AppCompatActivity {
+public class ChooseBicycleActivity extends AppCompatActivity {
 
     BicycleModel bicycleModel;
     List<BicycleModel> list = new ArrayList<>();

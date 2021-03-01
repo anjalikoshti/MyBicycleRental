@@ -5,9 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity"
-    android:background="@drawable/bicycle_wallpaper"
-    android:orientation="vertical"
-    >
+    android:background="#31000000"
+    android:orientation="vertical">
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/bicylelogo"
+        />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -20,7 +29,8 @@
             android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Email"/>
+            android:hint="Enter Email"
+            android:textStyle="bold"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -35,7 +45,8 @@
             android:layout_width="match_parent"
             android:inputType="textPassword"
             android:layout_height="wrap_content"
-            android:hint="Enter Password"/>
+            android:hint="Enter Password"
+            android:textStyle="bold"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -55,7 +66,8 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/drawable_resource1"
-            android:text="Login" />
+            android:text="Login"
+            android:textStyle="bold"/>
 
 </LinearLayout>
 
@@ -66,7 +78,8 @@
         android:layout_margin="5dp"
         android:background="@drawable/drawable_resource1"
         android:padding="5dp"
-        android:text="Forgat password?" />
+        android:text="Forgat password?"
+        android:textStyle="bold"/>
        <Button
            android:id="@+id/btn_register"
            android:background="@drawable/drawable_resource1"
@@ -75,6 +88,7 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:text="Register"
+           android:textStyle="bold"
            />
 
 </LinearLayout>

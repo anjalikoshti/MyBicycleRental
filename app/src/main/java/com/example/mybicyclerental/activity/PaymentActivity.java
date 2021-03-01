@@ -5,10 +5,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mybicyclerental.R;
+import com.example.mybicyclerental.model.BookingModel;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.core.View;
 import com.payumoney.core.PayUmoneySdkInitializer;
 import com.payumoney.core.entity.Amount;
 import com.payumoney.core.entity.TransactionResponse;
@@ -37,13 +42,16 @@ public class PaymentActivity extends AppCompatActivity {
     String udf9 = "";
     String udf10 = "";
     String salt = "1zFQ1i14Z3";
-    String merchantId="7380111";
+    String merchantId = "7380111";
+    BookingModel bookingModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        amount= getIntent().getStringExtra("amount");
-        String hashSequence = key+"|"+txnid+"|"+amount+"|"+productinfo+"|"+firstname+"|"+email+"|"+udf1+"|"+udf2+"|"+udf3+"|"+udf4+"|"+udf5+"||||||"+salt;
+        bookingModel= (BookingModel) getIntent().getSerializableExtra("bookingModel");
+        amount=bookingModel.getTotal();
+
+        String hashSequence = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + firstname + "|" + email + "|" + udf1 + "|" + udf2 + "|" + udf3 + "|" + udf4 + "|" + udf5 + "||||||" + salt;
         PayUmoneySdkInitializer.PaymentParam.Builder builder = new
                 PayUmoneySdkInitializer.PaymentParam.Builder();
 
@@ -65,10 +73,9 @@ public class PaymentActivity extends AppCompatActivity {
                 .setUdf8(udf8)
                 .setUdf9(udf9)
                 .setUdf10(udf10)
-                .setIsDebug(false)                             // Integration environment - true (Debug)/ false(Production)
+                .setIsDebug(true)                             // Integration environment - true (Debug)/ false(Production)
                 .setKey(key)                        // Merchant key
                 .setMerchantId(merchantId);             // Merchant ID
-
 
 
         //declare paymentParam object
@@ -79,14 +86,14 @@ public class PaymentActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 //set the hash
-        String hash=hashCal("sha512",hashSequence);
+        String hash = hashCal("sha512", hashSequence);
         paymentParam.setMerchantHash(hash);
 
         PayUmoneyFlowManager.startPayUMoneyFlow(
                 paymentParam,
                 this,
                 R.style.AppTheme_default,
-        true);
+                true);
     }
 
     public static String hashCal(String type, String hashString) {
@@ -105,6 +112,7 @@ public class PaymentActivity extends AppCompatActivity {
         }
         return hash.toString();
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -117,25 +125,40 @@ public class PaymentActivity extends AppCompatActivity {
             if (transactionResponse != null && transactionResponse.getPayuResponse() != null) {
 
                 if (transactionResponse.getTransactionStatus().equals(TransactionResponse.TransactionStatus.SUCCESSFUL)) {
-                    Toast.makeText(PaymentActivity.this,"Successfull",Toast.LENGTH_SHORT).show();
-                    //Success Transaction
+                        FirebaseFirestore.getInstance().collection("BOOKINGS").add(bookingModel)
+                                .addOnCompleteListener(task1 -> {
+                                    if (task1.isSuccessful()) {
+                                        Toast.makeText(PaymentActivity.this, "Booking is successfull", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(PaymentActivity.this,CurrentRideActivity.class);
+                                        startActivity(intent);
+                                    } else
+                                        Toast.makeText(PaymentActivity.this, "" + task1.getException(), Toast.LENGTH_SHORT).show();
+
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(PaymentActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        Toast.makeText(PaymentActivity.this, "Successfull", Toast.LENGTH_SHORT).show();
+
+                        //Success Transaction
+                    }
+                else
+                    {
+                        Toast.makeText(PaymentActivity.this,"Failed",Toast.LENGTH_SHORT).show();
+                    }
+
+                    // Response from Payumoney
+                    String payuResponse = transactionResponse.getPayuResponse();
+
+                    // Response from SURl and FURL
+                    String merchantResponse = transactionResponse.getTransactionDetails();
                 } else {
-                    //Failure Transaction
+                    Log.d("payment", "Both objects are null!");
                 }
-
-                // Response from Payumoney
-                String payuResponse = transactionResponse.getPayuResponse();
-
-                // Response from SURl and FURL
-                String merchantResponse = transactionResponse.getTransactionDetails();
-            } else {
-                Log.d("payment", "Both objects are null!");
             }
+
         }
-
-    }
-
-
-
-    }
+}
 

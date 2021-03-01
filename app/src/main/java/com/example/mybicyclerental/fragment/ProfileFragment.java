@@ -96,7 +96,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 if (iduri!=null)
                uploadDoc();
-                else Toast.makeText(getActivity(), "Select Profile", Toast.LENGTH_SHORT).show();
+                else Toast.makeText(getActivity(), " Upload ", Toast.LENGTH_SHORT).show();
             }
 
             private void uploadDoc() {

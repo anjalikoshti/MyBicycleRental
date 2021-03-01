@@ -23,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -69,7 +70,8 @@ public class CurrentRideActivity extends AppCompatActivity {
                                 tvCDY.setText(model.getDays());
                                 tvCHH.setText(model.getHour());
                                 tvTotal.setText(model.getTotal()+"RS");
-                                Glide.with(CurrentRideActivity.this).load(model.getBicycleModel().getBicycleImage()).into(icimage);
+                            Picasso.with(CurrentRideActivity.this).load(model.getBicycleModel().getBicycleImage()).into(icimage);
+                                //Glide.with(CurrentRideActivity.this).load(model.getBicycleModel().getBicycleImage()).into(icimage);
                         }
                         if (error!=null){
                             Toast.makeText(CurrentRideActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();

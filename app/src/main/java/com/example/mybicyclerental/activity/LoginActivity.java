@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mybicyclerental.R;
+import com.example.mybicyclerental.activity.admin.DashboardActivity;
 import com.example.mybicyclerental.databinding.ActivityLoginBinding;
 import com.example.mybicyclerental.databinding.ActivityRegisterBinding;
 import com.example.mybicyclerental.fragment.HomeFragment;
@@ -72,21 +73,28 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    FirebaseFirestore.getInstance().collection("USERS").whereEqualTo("email",email)
-                                            .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                                                @Override
-                                                public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                                                        UserModel model=value.getDocuments().get(0).toObject(UserModel.class);
-                                                        editor.putString("name",model.getName());
-                                                        editor.putString("contactNumber",model.getContactNumber());
-                                                        editor.putString("email",model.getEmail());
-                                                        editor.putString("password",model.getPassword());
+                                    if (email.equals("admin12@gmail.com")){
+                                        Intent intent=new Intent(LoginActivity.this, DashboardActivity.class);
+                                        startActivity(intent);
+
+                                    }
+                                    else{
+                                        FirebaseFirestore.getInstance().collection("USERS").whereEqualTo("email", email)
+                                                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                                                    @Override
+                                                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                                                        UserModel model = value.getDocuments().get(0).toObject(UserModel.class);
+                                                        editor.putString("name", model.getName());
+                                                        editor.putString("contactNumber", model.getContactNumber());
+                                                        editor.putString("email", model.getEmail());
+                                                        editor.putString("password", model.getPassword());
                                                         editor.apply();
-                                                }
-                                            });
-                                    Toast.makeText(LoginActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(LoginActivity.this, BottomNavActivity.class);
-                                    startActivity(intent);
+                                                    }
+                                                });
+                                        Toast.makeText(LoginActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(LoginActivity.this, BottomNavActivity.class);
+                                        startActivity(intent);
+                                    }
                                 } else
                                     Toast.makeText(LoginActivity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
                             }

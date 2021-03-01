@@ -44,25 +44,11 @@ public class BookingDetailActivity extends AppCompatActivity {
         imageView=findViewById(R.id.image_BD);
         preferences=getSharedPreferences("booking" ,Context.MODE_PRIVATE);
 
-
        btnbook.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               FirebaseFirestore.getInstance().collection("BOOKINGS").add(bookingModel)
-                    .addOnCompleteListener(task1 -> {
-                        if (task1.isSuccessful()) {
-                            Toast.makeText(BookingDetailActivity.this, "Booking is successfull", Toast.LENGTH_SHORT).show();
-                        } else
-                            Toast.makeText(BookingDetailActivity.this, "" + task1.getException(), Toast.LENGTH_SHORT).show();
-
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull  Exception e) {
-                    Toast.makeText(BookingDetailActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-               Intent intent=new Intent(BookingDetailActivity.this,PaymentActivity.class);
-               intent.putExtra("amount",bookingModel.getTotal());
+                      Intent intent=new Intent(BookingDetailActivity.this,PaymentActivity.class);
+               intent.putExtra("bookingModel",bookingModel);
                startActivity(intent);
            }
 

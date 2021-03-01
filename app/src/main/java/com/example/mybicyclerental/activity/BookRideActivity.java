@@ -39,7 +39,7 @@ public class BookRideActivity extends AppCompatActivity {
     private int PICK_IMAGE_CAMERA;
     ActivityBookRideBinding viewBinding;
     SharedPreferences preferences;
-    Button btnenterdate,btnchoosebicycle,btnscan, btnbooknow;
+    Button btnenterdate,btnchoosebicycle, btnbooknow;
     BicycleModel bicycleModel;
     RadioButton hour, days;
     RadioGroup radioGroup;
