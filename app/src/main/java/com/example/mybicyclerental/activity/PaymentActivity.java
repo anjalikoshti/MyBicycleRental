@@ -10,8 +10,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mybicyclerental.R;
+import com.example.mybicyclerental.activity.Model.PaymentModel;
 import com.example.mybicyclerental.model.BookingModel;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.core.View;
 import com.payumoney.core.PayUmoneySdkInitializer;
@@ -44,6 +47,7 @@ public class PaymentActivity extends AppCompatActivity {
     String salt = "1zFQ1i14Z3";
     String merchantId = "7380111";
     BookingModel bookingModel;
+    PaymentModel paymentModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -128,7 +132,8 @@ public class PaymentActivity extends AppCompatActivity {
                         FirebaseFirestore.getInstance().collection("BOOKINGS").add(bookingModel)
                                 .addOnCompleteListener(task1 -> {
                                     if (task1.isSuccessful()) {
-                                        Toast.makeText(PaymentActivity.this, "Booking is successfull", Toast.LENGTH_SHORT).show();
+                                        payment();
+;                                        Toast.makeText(PaymentActivity.this, "Booking is successfull", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(PaymentActivity.this,CurrentRideActivity.class);
                                         startActivity(intent);
                                     } else
@@ -160,5 +165,22 @@ public class PaymentActivity extends AppCompatActivity {
             }
 
         }
+
+    private void payment(){
+        paymentModel.getTxnid();
+        paymentModel.getFirstname();
+        paymentModel.getAmount();
+
+        FirebaseFirestore.getInstance().collection("PAYMENT").add(paymentModel)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+
+                        Toast.makeText(PaymentActivity.this,"Success",Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+    }
 }
 

@@ -18,15 +18,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyBicycleRental.Light"
         tools:replace="android:allowBackup">
-        <activity android:name=".activity.admin.ActiveDetailActivity"></activity>
         <!--
                Set to true if your app is Standalone, that is, it does not require the handheld
                app to run.
         -->
         <activity
             android:name=".activity.admin.ActiveRideDetailActivity"
-            android:label="@string/title_activity_active_ride_detail"></activity>
-        <activity android:name=".activity.admin.DashboardActivity"></activity>
+            android:label="@string/title_activity_active_ride_detail" />
+        <activity android:name=".activity.admin.DashboardActivity" />
         <activity android:name=".activity.UpcomingActivity" />
         <activity android:name=".activity.PaymentActivity" />
         <activity android:name=".activity.HistoryActivity" />

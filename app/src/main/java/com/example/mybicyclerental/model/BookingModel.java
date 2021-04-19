@@ -8,7 +8,7 @@ public class BookingModel implements Serializable {
     private String days;
     private String date;
     private String time;
-    private String price,status;
+    private String price;
 
 
     public String getTotal() {
@@ -83,13 +83,7 @@ public class BookingModel implements Serializable {
     }
 
 
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }
 
 
