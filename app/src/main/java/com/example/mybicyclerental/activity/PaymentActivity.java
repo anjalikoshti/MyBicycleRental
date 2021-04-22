@@ -52,8 +52,8 @@ public class PaymentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bookingModel= (BookingModel) getIntent().getSerializableExtra("bookingModel");
-        amount=bookingModel.getTotal();
+        bookingModel = (BookingModel) getIntent().getSerializableExtra("bookingModel");
+        amount = bookingModel.getTotal();
 
         String hashSequence = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + firstname + "|" + email + "|" + udf1 + "|" + udf2 + "|" + udf3 + "|" + udf4 + "|" + udf5 + "||||||" + salt;
         PayUmoneySdkInitializer.PaymentParam.Builder builder = new
@@ -129,47 +129,46 @@ public class PaymentActivity extends AppCompatActivity {
             if (transactionResponse != null && transactionResponse.getPayuResponse() != null) {
 
                 if (transactionResponse.getTransactionStatus().equals(TransactionResponse.TransactionStatus.SUCCESSFUL)) {
-                        FirebaseFirestore.getInstance().collection("BOOKINGS").add(bookingModel)
-                                .addOnCompleteListener(task1 -> {
-                                    if (task1.isSuccessful()) {
-                                        payment();
-;                                        Toast.makeText(PaymentActivity.this, "Booking is successfull", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(PaymentActivity.this,CurrentRideActivity.class);
-                                        startActivity(intent);
-                                    } else
-                                        Toast.makeText(PaymentActivity.this, "" + task1.getException(), Toast.LENGTH_SHORT).show();
+                    FirebaseFirestore.getInstance().collection("BOOKINGS").add(bookingModel)
+                            .addOnCompleteListener(task1 -> {
+                                if (task1.isSuccessful()) {
+                                    Toast.makeText(PaymentActivity.this, "Booking is successfull", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(PaymentActivity.this, CurrentRideActivity.class);
+                                    startActivity(intent);
+                                    payment();
 
-                                }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(PaymentActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        Toast.makeText(PaymentActivity.this, "Successfull", Toast.LENGTH_SHORT).show();
+                                } else
+                                    Toast.makeText(PaymentActivity.this, "" + task1.getException(), Toast.LENGTH_SHORT).show();
 
-                        //Success Transaction
-                    }
-                else
-                    {
-                        Toast.makeText(PaymentActivity.this,"Failed",Toast.LENGTH_SHORT).show();
-                    }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(PaymentActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    Toast.makeText(PaymentActivity.this, "Successfull", Toast.LENGTH_SHORT).show();
 
-                    // Response from Payumoney
-                    String payuResponse = transactionResponse.getPayuResponse();
-
-                    // Response from SURl and FURL
-                    String merchantResponse = transactionResponse.getTransactionDetails();
+                    //Success Transaction
                 } else {
-                    Log.d("payment", "Both objects are null!");
+                    Toast.makeText(PaymentActivity.this, "Failed", Toast.LENGTH_SHORT).show();
                 }
-            }
 
+                // Response from Payumoney
+                String payuResponse = transactionResponse.getPayuResponse();
+
+                // Response from SURl and FURL
+                String merchantResponse = transactionResponse.getTransactionDetails();
+            } else {
+                Log.d("payment", "Both objects are null!");
+            }
         }
+    }
+
 
     private void payment(){
-        paymentModel.getTxnid();
-        paymentModel.getFirstname();
-        paymentModel.getAmount();
+        paymentModel.setTxnid(txnid);
+        paymentModel.setFirstname(firstname);
+        paymentModel.setAmount(amount);
 
         FirebaseFirestore.getInstance().collection("PAYMENT").add(paymentModel)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

@@ -34,8 +34,8 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.PaymentV
     @Override
     public void onBindViewHolder(@NonNull PaymentViewHolder holder, int position) {
      holder.txnid.setText(list.get(position).getTxnid());
-     holder.amount.setText(list1.get(position).getTotal());
-     holder.tfname.setText(list.get(position).getUserModel().getName());
+    // holder.amount.setText(list1.get(position).getTotal());
+     //holder.tfname.setText(list.get(position).getna);
     }
 
     @Override
